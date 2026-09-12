@@ -1,0 +1,6 @@
+{
+  "node": "C:/Users/81965/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe",
+  "module": "C:/Users/81965/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/@oai/artifact-tool/dist/artifact_tool.mjs",
+  "skill": "C:/Users/81965/.codex/plugins/cache/openai-primary-runtime/presentations/26.905.11957/skills/presentations",
+  "python": "D:/yidui/miniconda/envs/ckos/python.exe"
+}

@@ -1,0 +1,11 @@
+import fs from 'node:fs/promises';
+import {pathToFileURL} from 'node:url';
+const config=JSON.parse(await fs.readFile('config/ppt_runtime.json','utf8'));
+const {FileBlob,PresentationFile}=await import(pathToFileURL(config.module).href);
+const deck=await PresentationFile.importPptx(await FileBlob.load(process.argv[2]));
+const folder='storage/ppt-style-review';await fs.mkdir(folder,{recursive:true});
+const result=await deck.inspect({kind:'slide,textbox,table,chart',maxChars:40000});
+await fs.writeFile(folder+'/inspection.txt',result.ndjson);
+const montage=await deck.export({format:'png',montage:true,scale:.4});
+await fs.writeFile(folder+'/before.png',new Uint8Array(await montage.arrayBuffer()));
+console.log(result.ndjson);

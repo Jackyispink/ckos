@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import {compositionPlan,wrapText} from '../scripts/ppt_layouts.mjs';
+const page=(layout='conclusions',text='正文内容')=>({enabled:true,layout,bullets:Array(4).fill(text)});
+assert.deepEqual(compositionPlan(Array.from({length:4},()=>page())),['lead','matrix','columns','rows']);
+const mixed=compositionPlan([page(),page('flow'),page(),page('comparison'),page()]);
+assert.equal(new Set(mixed).size,5);
+assert.equal(compositionPlan([page('conclusions','字'.repeat(110))])[0],'rows');
+assert.deepEqual(compositionPlan([{...page(),enabled:false},page()]),['lead']);
+assert.equal(compositionPlan([{...page('flow'),chapter:2,bullets:['2023年：起步','2024年：发展']}])[0],'timeline');
+const wrapped=wrapText('规模为2024年25.86%及AI技术',5);
+assert.ok(wrapped.includes('2024'));
+assert.ok(wrapped.includes('25.86%'));
+assert.equal(wrapped.replaceAll('\n',''),'规模为2024年25.86%及AI技术');
+console.log('Editorial layout tests passed');
