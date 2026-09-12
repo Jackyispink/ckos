@@ -1,0 +1,34 @@
+.env
+storage/
+__pycache__/
+.pytest_cache/
+
+# Private source material and local databases
+data/
+datatest/
+*.sqlite
+*.sqlite3
+*.db
+*.doc
+*.docx
+*.pdf
+*.ppt
+*.pptx
+*.xls
+*.xlsx
+
+# Local secrets and machine-specific overrides
+.env.*
+!.env.example
+config/local_*
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Generated/runtime files
+*.log
+*.py[cod]
+$RECYCLE.BIN/
+.DS_Store
+Thumbs.db
